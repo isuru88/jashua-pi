@@ -1,0 +1,25 @@
+{
+  "name": "jashua-pi",
+  "version": "1.0.0",
+  "description": "Raspberry Pi application for Jashua",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isuru88/jashua-pi.git"
+  },
+  "keywords": [
+    "Raspberry",
+    "pi",
+    "nodejs",
+    "socket.io"
+  ],
+  "author": "Isuru Jayasooriya <isuruj@zone24x7.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isuru88/jashua-pi/issues"
+  },
+  "homepage": "https://github.com/isuru88/jashua-pi#readme"
+}
