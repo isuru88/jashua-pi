@@ -4,6 +4,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var rpio = require('rpio');
 
+rpio.init({gpiomem: false});
+
 //Lights
 rpio.open(5, rpio.OUTPUT, rpio.LOW);
 rpio.open(7, rpio.OUTPUT, rpio.LOW);
