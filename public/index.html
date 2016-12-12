@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>Jashua Control</title>  
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>	
+    <script src="socket.io-1.4.5.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="jquery.hotkeys.min.js"></script>	
     <script>
       var socket = io();
       socket.emit('CENTER', '');
@@ -33,7 +34,16 @@
       };
       function stop(){
         socket.emit('STOP');
-      };      
+      }; 
+
+      $(document).bind('keydown.w', forward);
+      $(document).bind('keyup.w', stop);
+      $(document).bind('keydown.s', backward);     
+      $(document).bind('keyup.s', stop);
+      $(document).bind('keydown.a', left);
+      $(document).bind('keyup.a', center);
+      $(document).bind('keydown.d', right);
+      $(document).bind('keyup.d', center);
 
     </script>
   </head>
