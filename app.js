@@ -4,6 +4,14 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var rpio = require('rpio');
 
+//Lights
+rpio.open(5, rpio.OUTPUT, rpio.LOW);
+rpio.open(7, rpio.OUTPUT, rpio.LOW);
+rpio.open(8, rpio.OUTPUT, rpio.LOW);
+rpio.open(19, rpio.OUTPUT, rpio.LOW);
+rpio.open(21, rpio.OUTPUT, rpio.LOW);
+rpio.open(22, rpio.OUTPUT, rpio.LOW);
+
 // Motor A
 rpio.open(12, rpio.PWM);
 rpio.open(11, rpio.OUTPUT, rpio.LOW);
@@ -17,6 +25,10 @@ rpio.open(16, rpio.OUTPUT, rpio.LOW);
 rpio.pwmSetClockDivider(64);
 rpio.pwmSetRange(12, 1024);
 rpio.pwmSetData(12, 1024);
+
+var blue = false;
+var green = false;
+var red = false;
 
 app.use(express.static('public'));
 
@@ -58,6 +70,43 @@ io.on('connection', function(socket){
     rpio.write(11, rpio.LOW);
     rpio.write(13, rpio.LOW);
   });
+  
+  socket.on('BLUE', function(msg){
+    blue = !blue;
+
+    if (blue) {
+      rpio.write(5, rpio.HIGH);
+      rpio.write(19, rpio.HIGH);
+    }
+    else { 
+      rpio.write(5, rpio.LOW);
+      rpio.write(19, rpio.LOW); 
+    }
+  });
+  socket.on('GREEN', function(msg){
+    green = !green;
+
+    if (green) {
+      rpio.write(7, rpio.HIGH);
+      rpio.write(21, rpio.HIGH);
+    }
+    else {
+      rpio.write(7, rpio.LOW);
+      rpio.write(21, rpio.LOW);
+    }
+  });
+  socket.on('RED', function(msg){
+    red = !red;
+
+    if (red) { 
+      rpio.write(8, rpio.HIGH);
+      rpio.write(22, rpio.HIGH);
+    }
+    else {
+      rpio.write(8, rpio.LOW);
+      rpio.write(22, rpio.LOW);
+    }
+  });
 
   socket.on('disconnect', function () {
     console.log('disconnected');
@@ -65,5 +114,11 @@ io.on('connection', function(socket){
     rpio.write(13, rpio.LOW);
     rpio.write(15, rpio.LOW);
     rpio.write(16, rpio.LOW);
+	rpio.write(5, rpio.LOW);
+    rpio.write(7, rpio.LOW);
+    rpio.write(8, rpio.LOW);
+    rpio.write(19, rpio.LOW);
+	rpio.write(21, rpio.LOW);
+	rpio.write(22, rpio.LOW);
   });
 });

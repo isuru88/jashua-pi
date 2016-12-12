@@ -70,24 +70,3 @@ stdin.on( 'data', function( key ){
 
 
 });
-
-
-/*
-stdin.on('keypress', function (chunk, key) {
-  process.stdout.write('Get Chunk: ' + chunk + '\n');
-  if (key && key.ctrl) { 
-    switch(key.name) {
-      case '1': rpio.write(5, rpio.HIGH);
-        break;
-      case '2': rpio.write(7, rpio.HIGH);
-        break;
-      case '3': rpio.write(8, rpio.HIGH);
-        break;
-      case 'c': rpio.write(5, rpio.LOW);
-        rpio.write(7, rpio.LOW);
-        rpio.write(8, rpio.LOW); 
-        process.exit(); 
-    }
-  }
-});
-*/

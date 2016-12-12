@@ -34,7 +34,16 @@
       };
       function stop(){
         socket.emit('STOP');
+      };
+	  function blue(){
+        socket.emit('BLUE');
       }; 
+	  function green(){
+        socket.emit('GREEN');
+      }; 
+	  function red(){
+        socket.emit('RED');
+      }; 	  
 
       $(document).bind('keydown.w', forward);
       $(document).bind('keyup.w', stop);
@@ -44,6 +53,9 @@
       $(document).bind('keyup.a', center);
       $(document).bind('keydown.d', right);
       $(document).bind('keyup.d', center);
+	  $(document).bind('keypress.1', blue);
+	  $(document).bind('keypress.2', green);
+	  $(document).bind('keypress.3', red);
 
     </script>
   </head>
@@ -56,6 +68,10 @@
     <button onclick="forward()">Forward</button>
     <button onclick="backward()">Backward</button>
     <button onclick="stop()">Stop</button>
+    <br />
+	<button onclick="blue()">Blue</button>
+    <button onclick="green()">Green</button>
+    <button onclick="red()">Red</button>
     <br />
     <img id="videostream" src="" alt="Waiting for Stream">
     <ul id="messages"></ul>    
