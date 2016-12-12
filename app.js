@@ -3,6 +3,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var rpio = require('rpio');
+var path = require('path');
+var shell = require('shell');
 
 rpio.init({gpiomem: false});
 
@@ -32,7 +34,7 @@ var blue = false;
 var green = false;
 var red = false;
 
-app.use(express.static('public'));
+app.use(express.static(path.resolve(__dirname, 'public')));
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
@@ -108,7 +110,12 @@ io.on('connection', function(socket){
       rpio.write(8, rpio.LOW);
       rpio.write(22, rpio.LOW);
     }
+  }); 
+
+  socket.on('SHUTDOWN', function(msg){
+    shell.exec('sudo shutdown -h now');
   });
+
 
   socket.on('disconnect', function () {
     console.log('disconnected');
@@ -116,11 +123,11 @@ io.on('connection', function(socket){
     rpio.write(13, rpio.LOW);
     rpio.write(15, rpio.LOW);
     rpio.write(16, rpio.LOW);
-	rpio.write(5, rpio.LOW);
+    rpio.write(5, rpio.LOW);
     rpio.write(7, rpio.LOW);
     rpio.write(8, rpio.LOW);
     rpio.write(19, rpio.LOW);
-	rpio.write(21, rpio.LOW);
-	rpio.write(22, rpio.LOW);
+    rpio.write(21, rpio.LOW);
+    rpio.write(22, rpio.LOW);
   });
 });

@@ -35,14 +35,17 @@
       function stop(){
         socket.emit('STOP');
       };
-	  function blue(){
+      function blue(){
         socket.emit('BLUE');
       }; 
-	  function green(){
+      function green(){
         socket.emit('GREEN');
       }; 
-	  function red(){
+      function red(){
         socket.emit('RED');
+      };
+      function shutdown(){
+        socket.emit('SHUTDOWN');
       }; 	  
 
       $(document).bind('keydown.w', forward);
@@ -53,9 +56,9 @@
       $(document).bind('keyup.a', center);
       $(document).bind('keydown.d', right);
       $(document).bind('keyup.d', center);
-	  $(document).bind('keypress.1', blue);
-	  $(document).bind('keypress.2', green);
-	  $(document).bind('keypress.3', red);
+      $(document).bind('keypress.1', blue);
+      $(document).bind('keypress.2', green);
+      $(document).bind('keypress.3', red);
 
     </script>
   </head>
@@ -69,7 +72,7 @@
     <button onclick="backward()">Backward</button>
     <button onclick="stop()">Stop</button>
     <br />
-	<button onclick="blue()">Blue</button>
+    <button onclick="blue()">Blue</button>
     <button onclick="green()">Green</button>
     <button onclick="red()">Red</button>
     <br />
