@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var rpio = require('rpio');
 var path = require('path');
-var shell = require('shell');
+var shell = require('child_process');
 
 rpio.init({gpiomem: false});
 
